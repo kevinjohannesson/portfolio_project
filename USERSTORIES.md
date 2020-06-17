@@ -1,0 +1,1 @@
+As a user, I want to be able to create a simple page with a heading, image and text paragraph.

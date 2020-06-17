@@ -1,26 +1,52 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import IconBar from './components/sidebar/iconbar/IconBar';
+import {default as SIDEBAR_L} from './components/sidebar/Main';
+import {default as SIDEBAR_R} from './components/sidebar/Main';
+import Navbar from './components/navbar/Navbar';
+import Artboard from './components/artboard/Artboard';
+import ThemeWrapper from './components/ThemeWrapper';
+import styled from 'styled-components';
+import { textColor } from './styling/main';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeWrapper>
+      <APP>
+        <Artboard />
+        <Navbar />
+        <CONTAINER>
+          <IconBar />
+          <SIDEBAR_L />
+          <SIDEBAR_R right />
+        </CONTAINER>
+      </APP>
+    </ThemeWrapper>
   );
 }
 
 export default App;
+
+const APP = styled.div`
+  color: ${textColor};
+
+  height: 100%;
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+const CONTAINER = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+
+  align-self: flex-start;
+  
+  position: relative;
+
+  pointer-events: none;
+`
