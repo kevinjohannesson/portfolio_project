@@ -68,7 +68,6 @@ export default function Page({page}: Props): ReactElement {
 
 
 const PAGE = styled.div`
-  width: 250px;
   height: 250px;
   border-radius: 25px;
   background-color: white;
@@ -83,6 +82,7 @@ const PAGE = styled.div`
   justify-content: center;
 
   overflow: hidden;
+  flex: 0 0 auto; 
 `
 
 const TITLE = styled.h2`

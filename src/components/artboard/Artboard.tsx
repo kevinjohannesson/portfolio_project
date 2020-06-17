@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, Fragment } from 'react'
 import styled from 'styled-components';
 import { bgColor_1 } from '../../styling/main';
 import { useSelector } from 'react-redux';
@@ -17,8 +17,20 @@ export default function Artboard({niks}: Props): ReactElement {
   return (
     <ARTBOARD>
       Artboard
-      {pages.map((page, index) => 
-        <Page key={index} page={page} />) 
+      {pages.map((page, index) => {
+
+        return (
+          <Fragment>
+
+        <Page key={index} page={page} />
+        <Page key={index} page={page} />
+        <Page key={index} page={page} />
+        <Page key={index} page={page} />
+        <Page key={index} page={page} />
+        <Page key={index} page={page} />
+          </Fragment>
+          )  
+      })
       }
     </ARTBOARD>
   )
@@ -26,18 +38,18 @@ export default function Artboard({niks}: Props): ReactElement {
 
 const ARTBOARD = styled.div`
   min-height: 100vh;
-  min-width: 100vw;
+
 
   position: fixed;
 
-  top: 0;
-  left: 0;
 
   overflow: scroll;
 
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-x: auto;
+  flex-wrap: nowrap;
 
   background-color: ${bgColor_1};
 `
