@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Page as I_Page } from '../../redux/project/project.d';
 import { getCurrentPageID } from '../../redux/project/selectors';
+import Tooltip from '../tooltip/Tooltip';
 
 interface Props {
   page: I_Page;
@@ -75,7 +76,9 @@ export default function Page({page}: Props): ReactElement {
       <COMPONENTS_WRAPPER>
         {page.components.map((component,index)=><COMPONENT key={index}/>)}
         <NEW_COMPONENT>
-          <FontAwesomeIcon icon={faPlusSquare} onClick={addNewComponent}/>
+          <Tooltip text="add row">
+            <FontAwesomeIcon icon={faPlusSquare} onClick={addNewComponent}/>
+          </Tooltip>
         </NEW_COMPONENT>
       </COMPONENTS_WRAPPER>
       

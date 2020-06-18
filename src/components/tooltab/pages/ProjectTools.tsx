@@ -2,11 +2,8 @@ import React, { ReactElement } from 'react'
 import { getPages, getProject } from '../../../redux/project/selectors';
 import { useSelector } from 'react-redux';
 
-interface Props {
-  
-}
 
-export default function ProjectTools({}: Props): ReactElement {
+export default function ProjectTools(): ReactElement {
   const pages = useSelector(getPages);
   const project = useSelector(getProject);
   return (
