@@ -1,11 +1,8 @@
-import React, { ReactElement, useCallback } from 'react'
+import React, { ReactElement } from 'react'
 import styled from 'styled-components';
-import { NAVBAR_HEIGHT } from '../../constants';
-import Icon from '../ButtonIcon/Icon';
-import { useSelector, useDispatch } from 'react-redux';
-import { isDarkMode, getWorkspace } from '../../redux/app/selectors';
-import { toggleDarkMode } from '../../redux/app/actions';
-import { bgColor_3, bgColor_4 } from '../../styling/main';
+import DarkModeToggle from './DarkModeToggle';
+import MenuButton from './MenuButton';
+import Titlebar from './Titlebar';
 
 interface Props {
   niks?: boolean
@@ -13,35 +10,64 @@ interface Props {
 
 export default function Navbar({niks}: Props): ReactElement {
   
-  const dispatch = useDispatch();
-
-  const is_darkMode = useSelector(isDarkMode);
-  const workspace = useSelector(getWorkspace);
-
-  const handleMouseClick = useCallback( () => {
-    console.log('onMouseClick')
-    dispatch(toggleDarkMode());
-  }, [dispatch]);
-
   return (
     <NAVBAR>
-      new_project / {workspace}
-      <Icon name="sun" onClick={handleMouseClick} active={!is_darkMode} fillColor="green" activeColor={is_darkMode ? 'darkgray' : undefined} />
+      <MENU>
+        <MenuButton />
+      </MENU>
+      <TITLEBAR>
+        <Titlebar />
+      </TITLEBAR>
+      <QUICKBAR>
+        <DarkModeToggle/>
+      </QUICKBAR>
     </NAVBAR>
   )
 }
 
-const NAVBAR = styled.div`
-  height: ${NAVBAR_HEIGHT.amount}${NAVBAR_HEIGHT.unit};
-  width: 100vw;
+const MENU = styled.div`
+  width: 3rem;
+  height: 100%;
+  /* border: 2px solid lightblue; */
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const TITLEBAR = styled.div`
+  height: 100%;
+  width: 100%;
+  /* border: 2px solid cadetblue; */
+  
+  padding: 0 1.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`
+
+const QUICKBAR = styled.div`
+  width: 5rem;
+  height: 100%;
+  /* border: 2px solid coral; */
+  
+  padding: 0 1rem;
+  
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`
+
+const NAVBAR = styled.nav`
+  height: 100%;
+  width: 100%;
+
+  /* border: 2px solid yellow; */
 
   position: relative;
 
   display: flex;
   align-items: center;
-  justify-content: center;
-  
-  background-color: ${bgColor_3};
-  
-  border-bottom: 1px solid ${bgColor_4};
+  justify-content: flex-start;
 `

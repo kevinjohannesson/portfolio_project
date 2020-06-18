@@ -1,22 +1,22 @@
 import React, { ReactElement } from 'react'
-import Components from './content/Components'
-import Pages from './content/Pages'
 import { useSelector } from 'react-redux';
 import { getWorkspace } from '../../redux/app/selectors';
+import PageTools from './pages/PageTools';
+import ComponentTools from './pages/ComponentTools';
 
 interface Props {
-  niks?: any;
+  empty?: any;
 }
 
-export default function Left({niks}: Props): ReactElement {
+export default function Tooltab({empty}: Props): ReactElement {
   const workspace = useSelector(getWorkspace);
   const content = (function(){
     switch(workspace){
       case 'pages': {
-        return <Pages />
+        return <PageTools />
       }
       case 'components': {
-        return <Components />
+        return <ComponentTools />
       }
     }
   })()

@@ -4,6 +4,7 @@ import { bgColor_1 } from '../../styling/main';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 import { changePageTitle } from '../../redux/project/actions';
 import { useDispatch } from 'react-redux';
@@ -62,6 +63,8 @@ export default function Page({page}: Props): ReactElement {
         }
         <FontAwesomeIcon icon={state.titleEdit ? faCheckSquare : faEdit} onClick={handleClick} style={{marginLeft: '1rem'}}/>
       </TITLE>
+
+      <FontAwesomeIcon icon={faPlusSquare} />
     </PAGE>
   )
 }
@@ -99,6 +102,8 @@ const TITLE = styled.h2`
 
   margin: 0;
   padding: 0.5rem;
+
+  user-select: none;
 
 
 `

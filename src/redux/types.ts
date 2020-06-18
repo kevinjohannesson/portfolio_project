@@ -1,5 +1,5 @@
 import { compose } from "redux";
-import { AppState } from "./app/types";
+import { AppState } from "./app/app";
 import { ProjectState } from './project/project.d';
 
 export type State = {

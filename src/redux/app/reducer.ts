@@ -1,4 +1,4 @@
-import { AppState, AppActions, TOGGLE_DARK_MODE, TOGGLE_COLLAPSE, SET_WORKSPACE } from "./types";
+import { AppState, AppActions, TOGGLE_DARK_MODE, TOGGLE_TOOLTAB_COLLAPSE, SET_WORKSPACE } from "./app.d";
 import { initialState } from "./initial_state";
 
 export default function reducer(
@@ -15,14 +15,12 @@ export default function reducer(
         },
       };
     }
-    case TOGGLE_COLLAPSE: {
+    case TOGGLE_TOOLTAB_COLLAPSE: {
       return {
         ...state,
         preferences: {
           ...state.preferences,
-          [action.payload]: {
-            collapsed: !state.preferences[action.payload].collapsed,
-          }
+          tooltab_collapsed: !state.preferences.tooltab_collapsed
         },
       };
     }

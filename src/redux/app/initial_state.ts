@@ -1,14 +1,17 @@
-import { AppState } from "./types";
+import { AppState } from "./app.d";
 
 export const initialState: AppState = {
   preferences: {
     workspace: 'pages',
     dark_mode: true,
-    sidebar_left: {
-      collapsed: false
+    tooltab_collapsed: true,
+  },
+  workspaces: [
+    {
+      name: 'pages'
     },
-    sidebar_right: {
-      collapsed: true
+    {
+      name: 'components'
     }
-  }
+  ]
 };

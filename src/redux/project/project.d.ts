@@ -16,9 +16,8 @@ export interface ProjectState {
   pages: Page[];
 }
 
-export interface addPage extends Action {
+export interface AddPage extends Action {
   type: typeof ADD_PAGE;
-  page: Page
 }
 
 export interface ChangePageTitle extends Action {

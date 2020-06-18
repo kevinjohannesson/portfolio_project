@@ -1,14 +1,13 @@
-import { TOGGLE_DARK_MODE, AppActions, Element, TOGGLE_COLLAPSE, SET_WORKSPACE } from './types';
+import { TOGGLE_DARK_MODE, AppActions, TOGGLE_TOOLTAB_COLLAPSE, SET_WORKSPACE } from './app.d';
 
 export const toggleDarkMode = ( ) => {
   return {
     type: TOGGLE_DARK_MODE
   } as AppActions
 }
-export const toggleCollapse = ( element: Element ) => {
+export const toggleTooltabCollapse = ( ) => {
   return {
-    type: TOGGLE_COLLAPSE,
-    payload: element
+    type: TOGGLE_TOOLTAB_COLLAPSE,
   } as AppActions
 }
 export const setWorkspace = ( workspace: string ) => {
