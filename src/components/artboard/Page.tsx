@@ -1,15 +1,16 @@
 import React, { ReactElement, useReducer, useCallback, useRef } from 'react'
 import styled from 'styled-components';
-import { bgColor_1 } from '../../styling/main';
+// import { bgColor_1 } from '../../styling/main';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
-import { changePageTitle } from '../../redux/project/actions';
-import { useDispatch } from 'react-redux';
+import { changePageTitle, addComponent, setCurrentPage } from '../../redux/project/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Page as I_Page } from '../../redux/project/project.d';
+import { getCurrentPageID } from '../../redux/project/selectors';
 
 interface Props {
   page: I_Page;
@@ -42,6 +43,8 @@ function reducer(state: State, action:any) {
 export default function Page({page}: Props): ReactElement {
   const ref = useRef<HTMLInputElement>(null);
 
+
+  const currentPageID = useSelector(getCurrentPageID);
   const dispatch = useDispatch();
   const [state, localDispatch] = useReducer(reducer, initialState);
 
@@ -54,8 +57,14 @@ export default function Page({page}: Props): ReactElement {
     else localDispatch({type: EDIT_TITLE});
   }, [dispatch, state, page]);
 
+
+  const addNewComponent = useCallback( (event) => {
+    console.log('addNewComponent')
+    dispatch(addComponent());
+  }, [dispatch]);
+
   return (
-    <PAGE>
+    <PAGE onMouseDown={()=>{if(currentPageID !== page.id) dispatch(setCurrentPage(page))}}>
       <TITLE>
         { state.titleEdit ? 
           <input type="text" defaultValue={page.title} ref={ref} />
@@ -63,16 +72,69 @@ export default function Page({page}: Props): ReactElement {
         }
         <FontAwesomeIcon icon={state.titleEdit ? faCheckSquare : faEdit} onClick={handleClick} style={{marginLeft: '1rem'}}/>
       </TITLE>
-
-      <FontAwesomeIcon icon={faPlusSquare} />
+      <COMPONENTS_WRAPPER>
+        {page.components.map((component,index)=><COMPONENT key={index}/>)}
+        <NEW_COMPONENT>
+          <FontAwesomeIcon icon={faPlusSquare} onClick={addNewComponent}/>
+        </NEW_COMPONENT>
+      </COMPONENTS_WRAPPER>
+      
     </PAGE>
   )
 }
 
 
+
+const COMPONENTS_WRAPPER = styled.div`
+  width: 100%;
+  height: 100%;
+  /* border: 3px solid green; */
+
+  padding: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  /* overflow: auto; */
+`
+
+const COMPONENT = styled.div`
+  width: 100%;
+  height: 5rem;
+  border: 3px solid darkgray;
+  border-radius: 1rem;
+
+  flex: 0 0 auto;
+
+  margin: 0.25rem 0;
+
+`
+
+const NEW_COMPONENT = styled.div`
+  width: 100%;
+  height: 5rem;
+
+  border: 3px dashed lightgray;
+  border-radius: 1rem;
+
+  font-size: 3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+
+  svg {
+    color: lightgray;
+  }
+`
+
 const PAGE = styled.div`
-  width: 250px;
-  height: 250px;
+  width: 32rem;
+  min-height: 24rem;
   border-radius: 25px;
   background-color: white;
   box-shadow: 0px 0px 34px -13px rgba(0,0,0,0.75);
@@ -82,15 +144,17 @@ const PAGE = styled.div`
   margin: 25px;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
   overflow: hidden;
 `
 
 const TITLE = styled.h2`
   width: 100%;
-  background-color: ${bgColor_1};
+  height: 4rem;
+  background-color: purple;
   color: white;
 
   display: flex;
@@ -101,11 +165,8 @@ const TITLE = styled.h2`
   align-self: flex-start;
 
   margin: 0;
+  
   padding: 0.5rem;
-
-  user-select: none;
-
-
 `
 
 

@@ -4,7 +4,7 @@ interface Sidebar {
   collapsed: boolean;
 }
 
-export type WorkspaceName = 'pages' | 'components';
+export type WorkspaceName = 'project' | 'pages' | 'components';
 
 export type AppState = {
   preferences: {

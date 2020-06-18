@@ -21,6 +21,6 @@ export default function DarkModeToggle({empty}: Props): ReactElement {
   }, [dispatch]);
 
   return (
-    <FontAwesomeIcon icon={darkMode ? faSun : faMoon} onClick={handleToggleDarkMode}/>
+    <FontAwesomeIcon icon={darkMode ? faSun : faMoon} onClick={handleToggleDarkMode} style={{cursor: 'pointer'}}/>
   )
 }

@@ -13,7 +13,7 @@ export default function PageTools({ empty}: Props): ReactElement {
   }, [dispatch]);
   return (
     <div>
-      PageTools
+      <h1>PageTools</h1>
       <button onClick={handleClick}>add page</button>
     </div>
   )

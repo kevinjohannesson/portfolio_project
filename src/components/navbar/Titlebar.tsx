@@ -1,13 +1,18 @@
 import React, { ReactElement } from 'react'
+import { getProject, getCurrentPage, getCurrentComponent } from '../../redux/project/selectors';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
 
-interface Props {
-  empty?: any;
-}
-
-export default function Titlebar({empty}: Props): ReactElement {
+export default function Titlebar(): ReactElement {
+  const project = useSelector(getProject);
+  const page = useSelector(getCurrentPage);
+  const component = useSelector(getCurrentComponent);
   return (
-    <div>
-      project name &gt; current page name &gt; current component
-    </div>
+    <SLUG>
+      {`${project.name} > ${page && page.title} ${component ? (component.title ? component.title : 'untitled component') : ''}`}
+    </SLUG>
   )
 }
+
+const SLUG = styled.span`
+`

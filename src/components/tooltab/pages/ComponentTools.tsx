@@ -7,6 +7,8 @@ interface Props {
 export default function ComponentTools({ empty}: Props): ReactElement {
   
   return (
-    <div>Component Tools</div>
+    <div>
+      <h1>Component Tools</h1>
+    </div>
   )
 }
