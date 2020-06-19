@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Page as I_Page } from '../../redux/project/project.d';
 import { getCurrentPageID } from '../../redux/project/selectors';
 import Tooltip from '../tooltip/Tooltip';
+import { Example } from './Example';
 
 interface Props {
   page: I_Page;
@@ -74,14 +75,16 @@ export default function Page({page}: Props): ReactElement {
         <FontAwesomeIcon icon={state.titleEdit ? faCheckSquare : faEdit} onClick={handleClick} style={{marginLeft: '1rem'}}/>
       </TITLE>
       <COMPONENTS_WRAPPER>
+        <Example />
+      {/* 
         {page.components.map((component,index)=><COMPONENT key={index}/>)}
         <NEW_COMPONENT>
           <Tooltip text="add row">
             <FontAwesomeIcon icon={faPlusSquare} onClick={addNewComponent}/>
           </Tooltip>
         </NEW_COMPONENT>
+      </COMPONENTS_WRAPPER> */}
       </COMPONENTS_WRAPPER>
-      
     </PAGE>
   )
 }
@@ -93,6 +96,7 @@ const COMPONENTS_WRAPPER = styled.div`
   height: 100%;
   /* border: 3px solid green; */
 
+  border-radius: 0 0 25px 25px;
   padding: 0.5rem;
 
   display: flex;
@@ -100,6 +104,7 @@ const COMPONENTS_WRAPPER = styled.div`
   align-items: center;
   justify-content: flex-start;
 
+  background-color: white;
   /* overflow: auto; */
 `
 
@@ -138,8 +143,8 @@ const NEW_COMPONENT = styled.div`
 const PAGE = styled.div`
   width: 32rem;
   min-height: 24rem;
-  border-radius: 25px;
-  background-color: white;
+  
+  /* background-color: white; */
   box-shadow: 0px 0px 34px -13px rgba(0,0,0,0.75);
 
   color: black;
@@ -151,13 +156,16 @@ const PAGE = styled.div`
   align-items: center;
   justify-content: flex-start;
 
-  overflow: hidden;
+  
+
+  /* overflow: hidden; */
 `
 
 const TITLE = styled.h2`
   width: 100%;
   height: 4rem;
   background-color: purple;
+  border-radius: 25px 25px 0 0;
   color: white;
 
   display: flex;

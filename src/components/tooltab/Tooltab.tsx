@@ -11,7 +11,7 @@ interface Props {
 
 export default function Tooltab({empty}: Props): ReactElement {
   const workspace = useSelector(getWorkspace);
-  const content = (function(){
+  const toolset = (function(){
     switch(workspace){
       case 'project': {
         return <ProjectTools />
@@ -24,9 +24,5 @@ export default function Tooltab({empty}: Props): ReactElement {
       }
     }
   })()
-  return (
-    <div>
-      {content}
-    </div>
-  )
+  return toolset
 }
