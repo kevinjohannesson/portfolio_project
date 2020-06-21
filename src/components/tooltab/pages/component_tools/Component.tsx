@@ -4,15 +4,16 @@ import { motion } from 'framer-motion';
 import { Draggable } from 'react-beautiful-dnd';
 
 interface Props {
-  
+  tag: string;
+  value: string;
 }
 
-export default function Component({}: Props): ReactElement {
+export default function Component({tag, value}: Props): ReactElement {
 
 
 
   return (
-    <Draggable draggableId={'NEW_COMPONENT'} index={4839} >
+    <Draggable draggableId={'NEW_COMPONENT'} index={0} >
        {
          (provided)=>(
           <ROW
@@ -20,7 +21,13 @@ export default function Component({}: Props): ReactElement {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            This is a new heading.
+            <TAG>
+              {tag}
+            </TAG>
+            <VALUE>
+              {value}
+            </VALUE>
+
           </ROW>
          )
        }
@@ -43,11 +50,20 @@ const ROW = styled.div`
   align-self: stretch;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 `
 
+const TAG = styled.div`
+  border-right: 3px solid darkgray;
+  background-color: lightgray;
+  margin-right: 1rem;
+`
+
+const VALUE = styled.div`
+  background-color: whitesmoke;
+`
 
 
 const COMPONENT = styled.div`

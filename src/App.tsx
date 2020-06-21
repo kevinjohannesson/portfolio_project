@@ -13,7 +13,7 @@ import { isTooltabCollapsed } from './redux/app/selectors';
 import Toolbox from './components/toolbox/Toolbox';
 import Tooltab from './components/tooltab/Tooltab';
 import { DragDropContext } from 'react-beautiful-dnd';
-import { addNewComponent, changeRowIndex, addRow } from './redux/project/actions';
+import { changeRowIndex, addRow } from './redux/project/actions';
 
 
 
@@ -52,9 +52,6 @@ function App() {
       const newIndex = destination.index;
       dispatch(addRow(newIndex));
     }
-
-
-    // dispatch(addNewComponent(result.draggableId))
   }
 
   return (

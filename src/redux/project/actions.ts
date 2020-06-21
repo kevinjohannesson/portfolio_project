@@ -1,4 +1,4 @@
-import { ADD_PAGE, ADD_NEW_COMPONENT, AddNewComponent, CHANGE_PAGE_TITLE, ChangePageTitle, AddPage, ADD_COMPONENT, AddComponent, SetCurrentPage, SET_CURRENT_PAGE, Page, CHANGE_ROW_INDEX, ChangeRowIndex, AddRow, ADD_ROW } from './project.d';
+import { ADD_PAGE, CHANGE_PAGE_TITLE, ChangePageTitle, AddPage, SetCurrentPage, SET_CURRENT_PAGE, Page, CHANGE_ROW_INDEX, ChangeRowIndex, AddRow, ADD_ROW, ChangeNewComponentTag, CHANGE_NEW_COMPONENT_TAG } from './project.d';
 
 export function addPage(): AddPage {
   return {
@@ -21,20 +21,6 @@ export function setCurrentPage(page: Page): SetCurrentPage {
   }
 }
 
-
-export function addComponent(): AddComponent {
-  return {
-    type: ADD_COMPONENT
-  }
-}
-
-export function addNewComponent(component: any): AddNewComponent {
-  return {
-    type: ADD_NEW_COMPONENT,
-    component
-  }
-}
-
 export function changeRowIndex(prevIndex: number, newIndex: number): ChangeRowIndex {
   return {
     type: CHANGE_ROW_INDEX,
@@ -47,5 +33,12 @@ export function addRow(newIndex: number): AddRow {
   return {
     type: ADD_ROW,
     newIndex
+  }
+}
+
+export function changeNewComponentTag(tag: string): ChangeNewComponentTag {
+  return {
+    type: CHANGE_NEW_COMPONENT_TAG,
+    tag
   }
 }

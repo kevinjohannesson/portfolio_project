@@ -47,15 +47,6 @@ export interface ChangePageTitle extends Action {
 }
 
 
-export interface AddComponent extends Action {
-  type: typeof ADD_COMPONENT;
-}
-export interface AddNewComponent extends Action {
-  type: typeof ADD_NEW_COMPONENT;
-  component: any;
-}
-
-
 export interface ChangeRowIndex extends Action {
   type: typeof CHANGE_ROW_INDEX;
   prevIndex: number;
@@ -68,14 +59,23 @@ export interface AddRow extends Action {
   newIndex: number;
 }
 
-export type ProjectActions = addPage | ChangePageTitle | SetCurrentPage | AddComponent | ChangeRowIndex | AddRow// | etc
+
+export interface ChangeNewComponentTag extends Action {
+  type: typeof CHANGE_NEW_COMPONENT_TAG;
+  tag: string;
+}
+
+
+
+
+export type ProjectActions = addPage | ChangePageTitle | SetCurrentPage | ChangeRowIndex | AddRow// | etc
 
 export const ADD_PAGE = "ADD_PAGE";
 export const CHANGE_PAGE_TITLE = "CHANGE_PAGE_TITLE";
-export const ADD_COMPONENT = "ADD_COMPONENT";
-export const ADD_NEW_COMPONENT = "ADD_NEW_COMPONENT";
-export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 
 export const CHANGE_ROW_INDEX = "CHANGE_ROW_INDEX";
 export const ADD_ROW = "ADD_ROW";
+
+export const CHANGE_NEW_COMPONENT_TAG = "CHANGE_NEW_COMPONENT_TAG";

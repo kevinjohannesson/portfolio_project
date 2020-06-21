@@ -13,7 +13,7 @@ const ROW = styled.div<I_ROW>`
   padding: 8px;
   /* margin-bottom: 8px; */
   
-  height: 3rem;
+  /* height: 3rem; */
 
   background-color: ${props => props.isDragging ? 'lightgreen' : 'white'};
 
@@ -21,7 +21,7 @@ const ROW = styled.div<I_ROW>`
   align-self: stretch;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 `
@@ -51,6 +51,9 @@ export default function Row({row, index}: Props) {
             {...provided.dragHandleProps}
             ref={provided.innerRef}
           >
+            <TAG>
+              {row.tag}
+            </TAG>
             {row.value}
           </ROW>
           // <Container
@@ -68,3 +71,10 @@ export default function Row({row, index}: Props) {
     </Draggable>
   )
 }
+
+const TAG = styled.div`
+  background-color: lightgray;
+  border-right: darkgray;
+  margin-right: 1rem;
+  padding: 0 0.5rem; 
+`

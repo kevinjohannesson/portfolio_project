@@ -4,13 +4,13 @@ import {
   ProjectActions, 
   ADD_PAGE,
   Page,
-  ADD_NEW_COMPONENT,
   CHANGE_PAGE_TITLE,
-  ADD_COMPONENT,
   Component,
   SET_CURRENT_PAGE,
   CHANGE_ROW_INDEX,
-  ADD_ROW 
+  ADD_ROW, 
+  CHANGE_NEW_COMPONENT_TAG,
+  ChangeNewComponentTag
 } from "./project.d";
 
 export default function reducer(
@@ -24,14 +24,7 @@ export default function reducer(
     case CHANGE_PAGE_TITLE: {
       return editPage(state, state.current_page, CHANGE_PAGE_TITLE, action.title)
     }
-    case ADD_COMPONENT: {
-      return editPage(state, state.current_page, ADD_COMPONENT, 'hallo')
-    }
-    case ADD_NEW_COMPONENT: {
-      console.log(action)
-      return editPage(state, state.current_page, ADD_COMPONENT, 'hallo')
-      // return state
-    }
+    
     case SET_CURRENT_PAGE: {
       return {...state, current_page: action.page.id}
     }
@@ -65,6 +58,15 @@ export default function reducer(
           return updatedPage
         }
       })}
+    }
+
+    case CHANGE_NEW_COMPONENT_TAG: {
+      return {
+        ...state, new_row: {
+          ...state.new_row,
+          tag: (action as ChangeNewComponentTag).tag
+        }
+      }
     }
 
     default: {
@@ -111,17 +113,17 @@ export function createNewPage(pages?: Page[]) {
         {
           id: 1,
           tag: 'h1',
-          value: 'This is a heading.'
+          value: 'What is Lorem Ipsum?'
         },
         {
           id: 2,
           tag: 'p',
-          value: 'This is a paragraph.'
+          value: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         },
         {
           id: 3,
           tag: 'img',
-          value: 'This is an image.'
+          value: 'https://picsum.photos/200/300'
         }
       ]
     }

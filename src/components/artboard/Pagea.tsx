@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
-import { changePageTitle, addComponent, setCurrentPage } from '../../redux/project/actions';
+import { changePageTitle, setCurrentPage } from '../../redux/project/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Page as I_Page } from '../../redux/project/project.d';
@@ -61,10 +61,7 @@ export default function Page({page}: Props): ReactElement {
   }, [dispatch, state, page]);
 
 
-  const addNewComponent = useCallback( (event) => {
-    console.log('addNewComponent')
-    dispatch(addComponent());
-  }, [dispatch]);
+
 
   return (
     <PAGE onMouseDown={()=>{if(currentPageID !== page.id) dispatch(setCurrentPage(page))}}>
