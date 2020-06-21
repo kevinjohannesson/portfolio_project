@@ -10,5 +10,6 @@ export const initialState: ProjectState = {
     id: 4,
     tag: 'h2',
     value: 'This is a new heading.'
-  }
+  },
+  isCreatingRow: 'idle'
 };

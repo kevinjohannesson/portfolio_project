@@ -32,3 +32,8 @@ export const getCurrentComponent = (state: State) => {
   //   return component;
   // } 
 }
+
+
+export const isCreatingNewComponent = (state: State) => {
+  return state.Project.isCreatingRow;
+}

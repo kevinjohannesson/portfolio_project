@@ -2,6 +2,8 @@ import React, { ReactElement, useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion';
 import { Draggable } from 'react-beautiful-dnd';
+import { useDispatch } from 'react-redux';
+import { updateNewComponent } from '../../../../redux/project/actions';
 
 interface Props {
   tag: string;
@@ -10,7 +12,12 @@ interface Props {
 
 export default function Component({tag, value}: Props): ReactElement {
 
-
+  const dispatch = useDispatch();
+  const handleMouseDown = useCallback( (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    console.log('onMouseDown')
+    console.log(tag, value)
+    dispatch(updateNewComponent(tag, value));
+  }, [tag, value]);
 
   return (
     <Draggable draggableId={'NEW_COMPONENT'} index={0} >
@@ -20,6 +27,7 @@ export default function Component({tag, value}: Props): ReactElement {
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
+            onMouseDown={handleMouseDown}
           >
             <TAG>
               {tag}
@@ -41,7 +49,7 @@ const ROW = styled.div`
   padding: 8px;
   /* margin-bottom: 8px; */
 
-  height: 3rem;
+  /* height: 3rem; */
 
   background-color: white;
   color: black;

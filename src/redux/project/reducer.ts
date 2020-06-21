@@ -10,7 +10,14 @@ import {
   CHANGE_ROW_INDEX,
   ADD_ROW, 
   CHANGE_NEW_COMPONENT_TAG,
-  ChangeNewComponentTag
+  ChangeNewComponentTag,
+  ChangeNewComponentValue,
+  CHANGE_NEW_COMPONENT_VALUE,
+  CREATE_NEW_ROW,
+  FINISH_NEW_ROW,
+  UPDATE_NEW_COMPONENT,
+  SET_COMPONENT_CREATION,
+  SetComponentCreation
 } from "./project.d";
 
 export default function reducer(
@@ -66,6 +73,49 @@ export default function reducer(
           ...state.new_row,
           tag: (action as ChangeNewComponentTag).tag
         }
+      }
+    }
+
+    case CHANGE_NEW_COMPONENT_VALUE: {
+      return {
+        ...state, new_row: {
+          ...state.new_row,
+          value: (action as ChangeNewComponentValue).value
+        }
+      }
+    }
+
+    case CREATE_NEW_ROW: {
+      return {
+        ...state,
+        isCreatingRow: 'in progress',
+        new_row: {
+          ...state.new_row,
+          id: state.new_row.id + 1
+        }
+      }
+    }
+    case FINISH_NEW_ROW: {
+      return {
+        ...state,
+        isCreatingRow: 'finished',
+      }
+    }
+
+    case UPDATE_NEW_COMPONENT: {
+      return {
+        ...state,
+        new_row: {
+          ...state.new_row,
+          tag: action.tag,
+          value: action.value,
+        }
+      }
+    }
+    case SET_COMPONENT_CREATION: {
+      return {
+        ...state,
+        isCreatingRow: (action as SetComponentCreation).value,
       }
     }
 

@@ -29,6 +29,7 @@ export interface ProjectState {
   current_page: number;
   current_component: number | null;
   new_row: Row;
+  isCreatingRow: 'in progress' | 'finished' | 'idle';
 }
 
 export interface AddPage extends Action {
@@ -65,10 +66,42 @@ export interface ChangeNewComponentTag extends Action {
   tag: string;
 }
 
+export interface ChangeNewComponentValue extends Action {
+  type: typeof CHANGE_NEW_COMPONENT_VALUE;
+  value: string;
+}
 
+export interface CreateNewRow extends Action {
+  type: typeof CREATE_NEW_ROW;
+}
 
+export interface UpdateNewComponent extends Action {
+  type: typeof UPDATE_NEW_COMPONENT;
+  tag: string;
+  value: string;
+}
 
-export type ProjectActions = addPage | ChangePageTitle | SetCurrentPage | ChangeRowIndex | AddRow// | etc
+export interface FinishNewRow extends Action {
+  type: typeof FINISH_NEW_ROW; 
+}
+
+export interface SetComponentCreation extends Action {
+  type: typeof SET_COMPONENT_CREATION;
+  value: ProjectState["isCreatingRow"];
+}
+
+export type ProjectActions = 
+  addPage | 
+  ChangePageTitle | 
+  SetCurrentPage | 
+  ChangeRowIndex | 
+  AddRow | 
+  ChangeNewComponentTag |
+  ChangeNewComponentValue |
+  CreateNewRow |
+  FinishNewRow |
+  UpdateNewComponent
+  // | etc
 
 export const ADD_PAGE = "ADD_PAGE";
 export const CHANGE_PAGE_TITLE = "CHANGE_PAGE_TITLE";
@@ -79,3 +112,10 @@ export const CHANGE_ROW_INDEX = "CHANGE_ROW_INDEX";
 export const ADD_ROW = "ADD_ROW";
 
 export const CHANGE_NEW_COMPONENT_TAG = "CHANGE_NEW_COMPONENT_TAG";
+export const CHANGE_NEW_COMPONENT_VALUE = "CHANGE_NEW_COMPONENT_VALUE";
+export const CREATE_NEW_ROW = "CREATE_NEW_ROW";
+export const FINISH_NEW_ROW = "FINISH_NEW_ROW";
+
+
+export const UPDATE_NEW_COMPONENT = "UPDATE_NEW_COMPONENT";
+export const SET_COMPONENT_CREATION = "SET_COMPONENT_CREATION";
