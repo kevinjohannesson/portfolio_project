@@ -12,6 +12,10 @@ import { toggleTooltabCollapse } from './redux/app/actions';
 import { isTooltabCollapsed } from './redux/app/selectors';
 import Toolbox from './components/toolbox/Toolbox';
 import Tooltab from './components/tooltab/Tooltab';
+import { DragDropContext } from 'react-beautiful-dnd';
+import { addNewComponent, changeRowIndex, addRow } from './redux/project/actions';
+
+
 
 function App() {
   
@@ -23,31 +27,65 @@ function App() {
     dispatch(toggleTooltabCollapse())
   }, [dispatch]);
 
+  function handleDragEnd(result: any){
+    console.log('DragEnd')
+    console.log(result)
+
+
+    const {destination, source } = result;
+    if(!destination){
+      return;
+    }
+  
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) return;
+
+    if ( destination.droppableId === source.droppableId) {
+      const prevIndex = source.index;
+      const newIndex = destination.index;
+      dispatch(changeRowIndex(prevIndex, newIndex));
+    } 
+    else {
+      console.log('halloooo')
+      const newIndex = destination.index;
+      dispatch(addRow(newIndex));
+    }
+
+
+    // dispatch(addNewComponent(result.draggableId))
+  }
+
   return (
-    <ThemeWrapper>
-      <WRAPPER>
-        <HEADER>
-          <Navbar />
-        </HEADER>
-        <WORKSPACE> 
-          <TOOLBOX>
-            <Toolbox/>
-          </TOOLBOX>
-          <TOOLTAB_WRAPPER>
-            <TOOLTAB 
-              initial={false}
-              animate={tooltabCollapsed ? "closed" : "open"}
-              variants={tooltabVariants}
-              transition={{ type: "spring", stiffness: 75, damping: 12 }}
-            >
-              <Tooltab />
-              <TOOLTAB_TOGGLE onClick={collapseTooltab}/>
-            </TOOLTAB>
-          </TOOLTAB_WRAPPER>
-          <Artboard />
-        </WORKSPACE>
-      </WRAPPER>
-    </ThemeWrapper>
+    <DragDropContext
+      onDragEnd={handleDragEnd}
+    >
+      <ThemeWrapper>
+        <WRAPPER>
+          <HEADER>
+            <Navbar />
+          </HEADER>
+          <WORKSPACE> 
+            <TOOLBOX>
+              <Toolbox/>
+            </TOOLBOX>
+            <TOOLTAB_WRAPPER>
+              <TOOLTAB 
+                initial={false}
+                animate={tooltabCollapsed ? "closed" : "open"}
+                variants={tooltabVariants}
+                transition={{ type: "spring", stiffness: 75, damping: 12 }}
+              >
+                <Tooltab />
+                <TOOLTAB_TOGGLE onClick={collapseTooltab}/>
+              </TOOLTAB>
+            </TOOLTAB_WRAPPER>
+            <Artboard />
+          </WORKSPACE>
+        </WRAPPER>
+      </ThemeWrapper>
+    </DragDropContext>
   );
 }
 

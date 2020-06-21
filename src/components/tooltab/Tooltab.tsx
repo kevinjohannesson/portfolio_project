@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux';
 import { getWorkspace } from '../../redux/app/selectors';
 import PageTools from './pages/PageTools';
-import ComponentTools from './pages/ComponentTools';
+import ComponentTools from './pages/component_tools/ComponentTools';
 import ProjectTools from './pages/ProjectTools';
 
 interface Props {

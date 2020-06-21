@@ -16,5 +16,6 @@ export const initialState: AppState = {
     {
       name: 'components'
     },
-  ]
+  ],
+  current_id: 0
 };

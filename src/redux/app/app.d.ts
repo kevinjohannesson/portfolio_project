@@ -13,6 +13,7 @@ export type AppState = {
     workspace: WorkspaceName;
   };
   workspaces: Workspace[];
+  current_id: number;
 };
 
 interface Workspace {
@@ -32,8 +33,13 @@ interface ToggleDarkMode extends Action {
   type: typeof TOGGLE_DARK_MODE;
 }
 
-export type AppActions = ToggleDarkMode | CollapseElement | setWorkspace; // | etc
+interface GenerateNewId extends Action {
+  type: typeof GENERATE_NEW_ID;
+}
+
+export type AppActions = ToggleDarkMode | CollapseElement | setWorkspace | GenerateNewId; // | etc
 
 export const TOGGLE_DARK_MODE = "TOGGLE_DARK_MODE";
 export const TOGGLE_TOOLTAB_COLLAPSE = "TOGGLE_TOOLTAB_COLLAPSE";
 export const SET_WORKSPACE = "SET_WORKSPACE";
+export const GENERATE_NEW_ID = "GENERATE_NEW_ID";

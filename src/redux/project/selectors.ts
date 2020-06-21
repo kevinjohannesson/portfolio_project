@@ -18,11 +18,17 @@ export const getCurrentPage = (state: State) => {
   return page;
 }
 
+export const getCurrentPageComponents = (state: State) => {
+  const page = getCurrentPage(state);
+  return page?.layout;
+}
+
 export const getCurrentComponent = (state: State) => {
-  const currentPage = getCurrentPage(state);
-  if(currentPage){
-    const id = getCurrentComponentID(state);
-    const component = currentPage.components.find(component => component.id === id)
-    return component;
-  } 
+  return {title: 'werkt niet meer'}
+  // const currentPage = getCurrentPage(state);
+  // if(currentPage){
+  //   const id = getCurrentComponentID(state);
+  //   const component = currentPage.layout.find(component => component.id === id)
+  //   return component;
+  // } 
 }
