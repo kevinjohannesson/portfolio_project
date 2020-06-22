@@ -1,6 +1,5 @@
-import React, { ReactElement, useCallback, useState } from 'react'
-import styled from 'styled-components'
-import { motion } from 'framer-motion';
+import React, { ReactElement, useCallback } from 'react';
+import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch } from 'react-redux';
 import { updateNewComponent } from '../../../../redux/project/actions';
@@ -14,10 +13,8 @@ export default function Component({tag, value}: Props): ReactElement {
 
   const dispatch = useDispatch();
   const handleMouseDown = useCallback( (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    console.log('onMouseDown')
-    console.log(tag, value)
     dispatch(updateNewComponent(tag, value));
-  }, [tag, value]);
+  }, [dispatch, tag, value]);
 
   return (
     <Draggable draggableId={'NEW_COMPONENT'} index={0} >
@@ -47,13 +44,9 @@ const ROW = styled.div`
   border: 3px solid lightgray;
   border-radius: 5px;
   padding: 8px;
-  /* margin-bottom: 8px; */
-
-  /* height: 3rem; */
 
   background-color: white;
   color: black;
-
 
   align-self: stretch;
 
@@ -71,26 +64,4 @@ const TAG = styled.div`
 
 const VALUE = styled.div`
   background-color: whitesmoke;
-`
-
-
-const COMPONENT = styled.div`
-  width: 5rem;
-  height: 5rem;
-  /* border: 3px solid yellow; */
-
-  border-radius: 1rem;
-
-  background-color: #9C1AFF;
-
-  font-weight: bold;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  margin: 0.5rem;
-
-  z-index: 1;
 `

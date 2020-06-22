@@ -149,7 +149,7 @@ const TOOLTAB_WRAPPER = styled.div`
 `
 
 const tooltabVariants = {
-  open: { x: 0 },
+  open: { x: '-1rem' },
   closed: { x: "-19rem" },
 }
 
@@ -164,6 +164,7 @@ const TOOLTAB = styled(motion.div)`
   position: absolute;
 
   padding: 1.25rem;
+  padding-left: 2.25rem;
 `
 
 const width = {unit: 'rem', amount: 0.5};

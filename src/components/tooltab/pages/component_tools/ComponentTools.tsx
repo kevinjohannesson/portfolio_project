@@ -1,17 +1,12 @@
-import React, { ReactElement, useCallback, useState, ChangeEvent, useEffect } from 'react';
+import React, { ReactElement, useCallback, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import Component from './Component';
 import { Droppable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeNewComponentTag, changeNewComponentValue, createNewRow, setComponentCreation } from '../../../../redux/project/actions';
+import { createNewRow, setComponentCreation } from '../../../../redux/project/actions';
 import { isCreatingNewComponent } from '../../../../redux/project/selectors';
 
-interface Props {
-  empty?: any;
-}
-
-export default function ComponentTools({ empty}: Props): ReactElement {
+export default function ComponentTools(): ReactElement {
 
   const dispatch = useDispatch();
 
@@ -35,9 +30,8 @@ export default function ComponentTools({ empty}: Props): ReactElement {
   // }
 
   const handleClick = useCallback( (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    console.log('onClick')
     dispatch(createNewRow());
-  }, []);
+  }, [dispatch]);
 
   // const handleChange = useCallback( (event: ChangeEvent<HTMLSelectElement>) => {
   //   const tag = event.target.value;
@@ -103,14 +97,6 @@ const COMPONENT_BOX = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`
-
-const NEW_COMPONENT = styled.div`
-  width: 100px;
-  height: 100px;
-  background-color: green;
-  border-radius: 20px;
-  color: white;
 `
 
 

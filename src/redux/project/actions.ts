@@ -1,5 +1,4 @@
 import { ADD_PAGE, CHANGE_PAGE_TITLE, ChangePageTitle, AddPage, SetCurrentPage, SET_CURRENT_PAGE, Page, CHANGE_ROW_INDEX, ChangeRowIndex, AddRow, ADD_ROW, ChangeNewComponentTag, CHANGE_NEW_COMPONENT_TAG, CHANGE_NEW_COMPONENT_VALUE, ChangeNewComponentValue, CreateNewRow, CREATE_NEW_ROW, UpdateNewComponent, UPDATE_NEW_COMPONENT, FinishNewRow, FINISH_NEW_ROW, ProjectState, SET_COMPONENT_CREATION, SetComponentCreation } from './project.d';
-import { faTag } from '@fortawesome/free-solid-svg-icons';
 
 export function addPage(): AddPage {
   return {

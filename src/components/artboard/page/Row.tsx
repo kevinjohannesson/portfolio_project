@@ -26,15 +26,15 @@ const ROW = styled.div<I_ROW>`
   justify-content: center;
 `
 
-const Handle = styled.div`
-  width: 20px;
-  height: 20px;
-  background-color: orange;
-  border-radius: 4px;
+// const Handle = styled.div`
+//   width: 20px;
+//   height: 20px;
+//   background-color: orange;
+//   border-radius: 4px;
 
-  margin-right: 8px;
+//   margin-right: 8px;
 
-`
+// `
 
 interface Props {
   row: I_Row;

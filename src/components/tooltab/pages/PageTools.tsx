@@ -14,7 +14,8 @@ export default function PageTools({ empty}: Props): ReactElement {
   return (
     <div>
       <h1>PageTools</h1>
-      <button onClick={handleClick}>add page</button>
+      <button onClick={handleClick}>add page BROKEN</button>
+      
     </div>
   )
 }

@@ -2,7 +2,7 @@ import { AppState } from "./app.d";
 
 export const initialState: AppState = {
   preferences: {
-    workspace: 'components',
+    workspace: 'project',
     dark_mode: true,
     tooltab_collapsed: false,
   },

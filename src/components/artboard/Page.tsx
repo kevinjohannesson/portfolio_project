@@ -1,9 +1,7 @@
-import React, { ReactElement, useState, useCallback } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
 import { Page as I_Page } from '../../redux/project/project.d';
-import { useSelector } from 'react-redux';
-import { getCurrentPageComponents } from '../../redux/project/selectors';
 import Container from './page/Container';
 import Row from './page/Row';
 
@@ -19,6 +17,15 @@ export default function Page({page}: Props): ReactElement {
   return (
     <PAGE>
       <TITLE>{page.title}</TITLE>
+
+      {/* <TITLE>
+        { state.titleEdit ? 
+          <input type="text" defaultValue={page.title} ref={ref} />
+          : page.title
+        }
+        <FontAwesomeIcon icon={state.titleEdit ? faCheckSquare : faEdit} onClick={handleClick} style={{marginLeft: '1rem'}}/>
+      </TITLE> */}
+
       <CONTENT>
         <Container>
           { 
