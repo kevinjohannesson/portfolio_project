@@ -48,6 +48,9 @@ const ROW = styled.div`
   background-color: white;
   color: black;
 
+  height: 10rem;
+
+
   align-self: stretch;
 
   display: flex;

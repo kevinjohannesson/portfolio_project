@@ -15,8 +15,6 @@ import Tooltab from './components/tooltab/Tooltab';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { changeRowIndex, addRow, finishNewRow } from './redux/project/actions';
 
-
-
 function App() {
   
   const dispatch = useDispatch();
@@ -149,8 +147,8 @@ const TOOLTAB_WRAPPER = styled.div`
 `
 
 const tooltabVariants = {
-  open: { x: '-1rem' },
-  closed: { x: "-19rem" },
+  open: { x: 0 },
+  closed: { x: "-18rem" },
 }
 
 const TOOLTAB = styled(motion.div)`
@@ -162,6 +160,7 @@ const TOOLTAB = styled(motion.div)`
   background-color: ${bgColor_4};
 
   position: absolute;
+  left: -1rem;
 
   padding: 1.25rem;
   padding-left: 2.25rem;

@@ -11,30 +11,16 @@ const ROW = styled.div<I_ROW>`
   border: 3px solid lightgray;
   border-radius: 5px;
   padding: 8px;
-  /* margin-bottom: 8px; */
-  
-  /* height: 3rem; */
 
+  /* flex-grow: 1; */
+  flex: 0 0 auto;
   background-color: ${props => props.isDragging ? 'lightgreen' : 'white'};
-
-
-  align-self: stretch;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 `
-
-// const Handle = styled.div`
-//   width: 20px;
-//   height: 20px;
-//   background-color: orange;
-//   border-radius: 4px;
-
-//   margin-right: 8px;
-
-// `
 
 interface Props {
   row: I_Row;
@@ -56,16 +42,6 @@ export default function Row({row, index}: Props) {
             </TAG>
             {row.value}
           </ROW>
-          // <Container
-          //   {...provided.draggableProps}
-          //   ref={provided.innerRef}
-          //   isDragging={snapshot.isDragging}
-          //   >
-          //   <Handle 
-          //     {...provided.dragHandleProps}
-          //   />
-          //   {props.row.tag}
-          // </Container>
         )
       }
     </Draggable>

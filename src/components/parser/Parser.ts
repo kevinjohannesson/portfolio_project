@@ -4,14 +4,16 @@ export default function parser(page: Page){
 
   const rows = page.layout.rows.map(row => `
     <div class="row">
-    <${row.tag} ${row.tag === 'img' ? `src=${row.value} /` : ''}>
-    ${row.tag !== 'img' ? `${row.value}</${row.tag}>` : ''}
+      <div class="col">
+        <${row.tag} ${row.tag === 'img' ? `src=${row.value} /` : ''}>
+        ${row.tag !== 'img' ? `${row.value}</${row.tag}>` : ''}
+      </div>
     </div>`
   ).join('');
 
   const html = `
     <!doctype html>
-    <html lang="en">
+    <html lang="en" class="h-100">
       <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -22,8 +24,8 @@ export default function parser(page: Page){
 
         <title>${page.title}</title>
       </head>
-      <body>
-        <div class="container">
+      <body class="h-100">
+        <div class="container h-100 d-flex flex-column justify-content-center align-items-center">
           ${rows}
         </div>
 

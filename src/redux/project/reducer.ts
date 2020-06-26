@@ -173,7 +173,7 @@ export function createNewPage(pages?: Page[]) {
         {
           id: 3,
           tag: 'img',
-          value: 'https://picsum.photos/200/300'
+          value: 'https://picsum.photos/500/300'
         }
       ]
     }

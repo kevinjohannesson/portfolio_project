@@ -8,20 +8,12 @@ interface Props {
 
 export default function Container({children}: Props): ReactElement {
   return (
-    <Droppable droppableId={"CONTAINER"}>
-        {
-          (provided, snapshot)=>(
-            <CONTAINER
-              ref={provided.innerRef}
-              {...provided.droppableProps}
-              isDraggingOver={snapshot.isDraggingOver}
-            >
-              {children}
-              {provided.placeholder}
-            </CONTAINER>
-          )
-        }
-    </Droppable>
+    <div/>
+            // <CONTAINER>
+            //   {children}
+              
+            // </CONTAINER>
+  
   )
 }
 
@@ -30,14 +22,20 @@ interface CONTAINER {
 }
 const CONTAINER = styled.div<CONTAINER>`
   width: 70%;
-  /* height: 100%; */
-  align-self: stretch;
   border: 3px solid purple;
+
+  /* height: 500px; */
+
+  /* padding-top: 25%; */
 
   background-color: ${ props => props.isDraggingOver ? 'lightgreen' : 'white'};
 
+  /* position: absolute; */
+
   display: flex;
   flex-direction: column;
-  /* align-items: center;
-  justify-content: center; */
+
+  /* flex-grow: 1; */
+  align-items: center;
+  justify-content: center;
 `
