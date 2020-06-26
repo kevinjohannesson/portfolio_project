@@ -1,8 +1,12 @@
-import React, { ReactElement, useRef } from 'react'
+import React, { ReactElement, useRef, useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Page as PageInterface } from '../../../redux/project/project'
+import { Page as PageInterface } from '../../../redux/project/project.d'
 import { Droppable } from 'react-beautiful-dnd';
 import Row from '../page_new/Row';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
+import { changePageTitle } from '../../../redux/project/actions'
 
 
 interface Props {
@@ -10,13 +14,32 @@ interface Props {
 }
 
 export default function Page({page}: Props): ReactElement {
-  const ref = useRef<HTMLDivElement>(null);
   
+  
+  const dispatch = useDispatch();
+
   const rows = page.layout.rows;
+
+
+  const [titleEdit, set_titleEdit] = useState(false);
+  const [title, set_title] = useState(page.title);
+
+  
+
+  const handleClick = useCallback(()=>{
+    set_titleEdit(!titleEdit);
+    if(titleEdit) dispatch(changePageTitle(page.id, title));
+  }, [titleEdit, page, title, dispatch]);
   
   return (
-    <PAGE ref={ref}>
-      <TITLE>pagetitle</TITLE>
+    <PAGE>
+      <TITLE>
+        { titleEdit ? 
+            <input type="text" defaultValue={page.title} onChange={(e)=>set_title(e.target.value)} />
+            : page.title
+          }
+        <FontAwesomeIcon icon={titleEdit ? faCheckSquare : faEdit} onClick={handleClick} style={{marginLeft: '1rem'}}/>
+      </TITLE>
       <CONTENT>
       <Droppable droppableId={'CONTAINER'}>
           {
@@ -79,7 +102,7 @@ const TITLE = styled.h2`
   align-self: stretch;
   
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 

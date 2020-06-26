@@ -29,7 +29,8 @@ export default function reducer(
       return {...state, pages: [...state.pages, createNewPage(state.pages)]}
     }
     case CHANGE_PAGE_TITLE: {
-      return editPage(state, state.current_page, CHANGE_PAGE_TITLE, action.title)
+      // return {...state, title: edit }
+      return editPage(state, action.page_id, CHANGE_PAGE_TITLE, action.title)
     }
     
     case SET_CURRENT_PAGE: {
@@ -126,22 +127,22 @@ export default function reducer(
 }
 
 function editPage(state: ProjectState, page_id: number, edit_type: string, edit: string){
-  return state;
-  // return {...state, pages: state.pages.map(page=>{
-  //   if(page.id !== page_id) return page;
-  //   else {
-  //     switch(edit_type){
-  //       case CHANGE_PAGE_TITLE: {
-  //         return {...page, title: edit };
-  //       }
-  //       case ADD_COMPONENT: {
-  //         return {...page, components: [...page.components, createNewComponent(page.components) ]};
-  //       }
-  //       default: 
-  //         return page;
-  //     }
-  //   } 
-  // })}
+  // return state;
+  return {...state, pages: state.pages.map(page=>{
+    if(page.id !== page_id) return page;
+    else {
+      switch(edit_type){
+        case CHANGE_PAGE_TITLE: {
+          return {...page, title: edit };
+        }
+        // case ADD_COMPONENT: {
+        //   return {...page, components: [...page.components, createNewComponent(page.components) ]};
+        // }
+        default: 
+          return page;
+      }
+    } 
+  })}
 }
 
 export function createNewComponent(components?: Component[]) {

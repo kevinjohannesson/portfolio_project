@@ -49,7 +49,7 @@ export default function ProjectTools(): ReactElement {
 
       <Modal show={show} onHide={handleClose} centered size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>Page preview:</Modal.Title>
+          <Modal.Title>Page preview: {page && page.title}</Modal.Title>
         </Modal.Header>
         
         <Modal.Body>
