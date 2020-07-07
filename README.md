@@ -8,7 +8,7 @@ This app allows te user to create a simple webpage using headers, paragraphs and
 
 <img src="http://kevinkroon.nl/images/creatingcontent.gif" />
 
-<img src="http://kevinkroon.nl/images/previewandexport.gif />
+<img src="http://kevinkroon.nl/images/previewandexport.gif" />
 
 In the project directory, you can run:
 
